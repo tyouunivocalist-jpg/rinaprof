@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>RINAプロフ帳</title>
+
+  <link rel="stylesheet" href="style.css" />
+
+  <!-- Supabase -->
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+
+  <!-- QR生成 -->
+  <script src="https://cdn.jsdelivr.net/npm/qrcodejs@1.0.0/qrcode.min.js"></script>
+
+  <!-- QR読取 -->
+  <script src="https://cdn.jsdelivr.net/npm/html5-qrcode@2.3.10/html5-qrcode.min.js"></script>
+
+  <script src="script.js" defer></script>
+</head>
+<body>
+
+  <main id="app">
+    <!-- ここにJSが中身を生成する -->
+    <section id="screen-top" class="screen is-active"></section>
+    <section id="screen-create" class="screen"></section>
+    <section id="screen-my" class="screen"></section>
+    <section id="screen-qr" class="screen"></section>
+    <section id="screen-book" class="screen"></section>
+  </main>
+
+</body>
+</html>

@@ -1,0 +1,119 @@
+/* ========= 基本 ========= */
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  font-family: -apple-system, BlinkMacSystemFont, "Helvetica Neue", sans-serif;
+  background: #0f172a;
+  color: #f8fafc;
+}
+
+#app {
+  max-width: 520px;
+  margin: 0 auto;
+  padding: 16px;
+}
+
+/* ========= ナビ ========= */
+.nav {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 8px;
+  margin-bottom: 16px;
+}
+
+.nav button {
+  padding: 12px;
+  border-radius: 24px;
+  border: none;
+  background: #1e293b;
+  color: #f8fafc;
+  font-weight: bold;
+  cursor: pointer;
+  transition: 0.2s ease;
+}
+
+.nav button:hover {
+  background: #334155;
+}
+
+/* ========= 画面切替 ========= */
+.screen {
+  display: none;
+  background: #1e293b;
+  padding: 16px;
+  border-radius: 20px;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+}
+
+.screen.active {
+  display: block;
+}
+
+h1 {
+  margin-top: 0;
+  font-size: 22px;
+}
+
+h2 {
+  margin-top: 0;
+  font-size: 18px;
+}
+
+/* ========= フォーム ========= */
+input,
+select,
+textarea {
+  width: 100%;
+  padding: 10px 12px;
+  margin-bottom: 12px;
+  border-radius: 12px;
+  border: none;
+  font-size: 14px;
+}
+
+textarea {
+  resize: none;
+  height: 80px;
+}
+
+/* ========= ボタン ========= */
+button {
+  padding: 10px 16px;
+  border-radius: 20px;
+  border: none;
+  background: #facc15;
+  color: #000;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+button:hover {
+  opacity: 0.9;
+}
+
+/* ========= QR ========= */
+#qrArea {
+  margin-top: 16px;
+  display: flex;
+  justify-content: center;
+}
+
+/* ========= プロフィールカード ========= */
+.profile-card {
+  background: #334155;
+  padding: 14px;
+  border-radius: 16px;
+  margin-top: 12px;
+}
+
+.profile-card div {
+  margin-bottom: 6px;
+}
+
+/* ========= プロフ帳 ========= */
+#bookList .profile-card {
+  margin-bottom: 12px;
+}
