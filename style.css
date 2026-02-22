@@ -1,0 +1,350 @@
+:root{
+  --paper:#F4EEE3;
+  --ink:#1f1b16;
+  --muted:#6c5f53;
+
+  /* 添付の4色アイコン系（雰囲気で統一） */
+  --a:#F2C14E;  /* yellow */
+  --b:#5BB6D5;  /* blue */
+  --c:#F07BA6;  /* pink */
+  --d:#8E7AE6;  /* purple */
+  --line:#2a231c22;
+  --shadow: 0 10px 26px rgba(0,0,0,.08);
+}
+
+*{box-sizing:border-box}
+html,body{height:100%}
+body{
+  margin:0;
+  background:linear-gradient(180deg, #f9f3e9, var(--paper));
+  color:var(--ink);
+  font-family:"Zen Maru Gothic", system-ui, -apple-system, "Hiragino Kaku Gothic ProN", "Noto Sans JP", sans-serif;
+}
+
+.hidden{display:none !important;}
+
+.app{min-height:100%; display:flex; flex-direction:column;}
+.main{width:min(980px, 94vw); margin:16px auto 24px; flex:1;}
+
+.paper{
+  background:var(--paper);
+  border:2px solid var(--line);
+  border-radius:18px;
+  box-shadow:var(--shadow);
+  padding:16px;
+  position:relative;
+}
+
+/* sketchnote feel */
+.paper::before{
+  content:"";
+  position:absolute; inset:10px;
+  border-radius:14px;
+  border:2px dashed rgba(31,27,22,.14);
+  pointer-events:none;
+}
+.paper{ transform: rotate(-0.4deg); }
+.screen:nth-child(even).paper{ transform: rotate(0.35deg); }
+
+.topbar{
+  width:min(980px, 94vw);
+  margin:14px auto 0;
+  padding:14px 16px;
+}
+.brand{display:flex; gap:12px; align-items:center;}
+.logoMark{
+  width:44px; height:44px; border-radius:14px;
+  display:grid; place-items:center;
+  background:linear-gradient(135deg, var(--a), var(--c));
+  color:#1b140f;
+  font-family:"Yomogi", cursive;
+  font-weight:700;
+  box-shadow: 0 8px 18px rgba(0,0,0,.12);
+}
+.brandTitle{
+  font-family:"Yomogi", cursive;
+  font-weight:700;
+  font-size:22px;
+  letter-spacing:.02em;
+}
+.brandSub{font-size:12px; color:var(--muted); margin-top:2px;}
+
+.navRow{
+  margin-top:12px;
+  display:flex; gap:8px; flex-wrap:wrap;
+}
+.navBtn{
+  appearance:none; border:2px solid rgba(31,27,22,.18);
+  background:#fff8;
+  padding:8px 10px;
+  border-radius:999px;
+  font-family:"Yomogi", cursive;
+  cursor:pointer;
+}
+.navBtn:active{transform:translateY(1px)}
+.navBtn:hover{background:#fff}
+
+.h2{
+  font-family:"Yomogi", cursive;
+  margin:0 0 8px;
+  font-size:20px;
+}
+.muted{color:var(--muted);}
+.small{font-size:12px;}
+
+.menuGrid{
+  display:grid;
+  grid-template-columns:repeat(2, minmax(0,1fr));
+  gap:10px;
+  margin-top:12px;
+}
+.menuCard{
+  border:2px solid rgba(31,27,22,.16);
+  border-radius:16px;
+  padding:14px;
+  background:#fff;
+  text-align:left;
+  cursor:pointer;
+  box-shadow:0 8px 18px rgba(0,0,0,.06);
+}
+.menuCard:active{transform:translateY(1px)}
+.mcTitle{
+  font-family:"Yomogi", cursive;
+  font-size:18px;
+}
+.mcSub{font-size:12px; color:var(--muted); margin-top:2px;}
+.c1{border-left:8px solid var(--a)}
+.c2{border-left:8px solid var(--b)}
+.c3{border-left:8px solid var(--c)}
+.c4{border-left:8px solid var(--d)}
+
+.pinCard{
+  margin-top:14px;
+  background:#fff;
+  border:2px solid rgba(31,27,22,.14);
+  border-radius:16px;
+  padding:14px;
+}
+.pinTitle{font-family:"Yomogi", cursive; font-size:16px;}
+.pinDesc{font-size:12px; color:var(--muted); margin-top:2px;}
+.pinRow{display:flex; gap:8px; align-items:center; margin-top:10px; flex-wrap:wrap;}
+.pinValue{
+  min-width:90px;
+  padding:10px 12px;
+  border-radius:12px;
+  border:2px dashed rgba(31,27,22,.2);
+  background:linear-gradient(180deg,#fff, #fff7);
+  font-family:"Zen Maru Gothic", sans-serif;
+  font-weight:700;
+  letter-spacing:.12em;
+}
+.pinHint{margin-top:8px; font-size:12px; color:var(--muted);}
+
+.form{display:flex; flex-direction:column; gap:12px; margin-top:10px;}
+.row2{display:grid; grid-template-columns:repeat(2, minmax(0,1fr)); gap:10px;}
+.field{display:flex; flex-direction:column; gap:6px;}
+.label{
+  font-family:"Yomogi", cursive;
+  font-size:14px;
+}
+input, select{
+  width:100%;
+  padding:12px 12px;
+  border-radius:14px;
+  border:2px solid rgba(31,27,22,.18);
+  background:#fff;
+  font-size:14px;
+  outline:none;
+}
+input:focus, select:focus{border-color:rgba(31,27,22,.35)}
+.hint{font-size:12px; color:var(--muted);}
+
+.iconPreviewRow{display:flex; gap:10px; align-items:center; margin-top:6px; flex-wrap:wrap;}
+.iconPreview{
+  width:54px; height:54px; border-radius:16px;
+  border:2px dashed rgba(31,27,22,.22);
+  background:linear-gradient(135deg, #fff, #fff7);
+  overflow:hidden;
+  background-size:cover; background-position:center;
+}
+
+.actions{display:flex; gap:10px; flex-wrap:wrap; margin-top:8px;}
+.primary{
+  background:linear-gradient(135deg, var(--a), #ffe7a6);
+  border:2px solid rgba(31,27,22,.18);
+  padding:12px 14px;
+  border-radius:16px;
+  font-family:"Yomogi", cursive;
+  cursor:pointer;
+  font-weight:700;
+}
+.ghost{
+  background:#fff;
+  border:2px solid rgba(31,27,22,.18);
+  padding:12px 14px;
+  border-radius:16px;
+  font-family:"Yomogi", cursive;
+  cursor:pointer;
+}
+.chipBtn{
+  background:#fff;
+  border:2px solid rgba(31,27,22,.18);
+  padding:10px 12px;
+  border-radius:999px;
+  font-family:"Yomogi", cursive;
+  cursor:pointer;
+}
+.chipBtn:active,.ghost:active,.primary:active{transform:translateY(1px)}
+
+.profileWrap{display:grid; grid-template-columns:1.2fr .8fr; gap:12px; margin-top:10px;}
+.profileCard{
+  background:#fff;
+  border:2px solid rgba(31,27,22,.14);
+  border-radius:18px;
+  padding:14px;
+  min-height:320px;
+  position:relative;
+  overflow:hidden;
+}
+.profileCard::before{
+  content:"";
+  position:absolute; inset:-20px;
+  background:
+    radial-gradient(circle at 12% 18%, rgba(242,193,78,.18), transparent 40%),
+    radial-gradient(circle at 88% 22%, rgba(91,182,213,.16), transparent 42%),
+    radial-gradient(circle at 22% 86%, rgba(240,123,166,.15), transparent 44%),
+    radial-gradient(circle at 86% 82%, rgba(142,122,230,.14), transparent 46%);
+  pointer-events:none;
+}
+.pcTop{display:flex; align-items:center; gap:12px; position:relative; z-index:1;}
+.pcIcon{
+  width:64px; height:64px; border-radius:18px;
+  border:2px solid rgba(31,27,22,.16);
+  background:#fff;
+  background-size:cover; background-position:center;
+  flex:0 0 auto;
+}
+.pcName{
+  font-family:"Yomogi", cursive;
+  font-size:22px;
+  font-weight:700;
+}
+.pcMeta{display:flex; gap:10px; margin-top:4px; color:var(--muted); font-size:12px;}
+.tagLine{
+  display:inline-flex; align-items:center; gap:6px;
+  margin-top:10px;
+  padding:8px 10px;
+  border-radius:999px;
+  background:#fff;
+  border:2px dashed rgba(31,27,22,.18);
+  position:relative; z-index:1;
+}
+.accentHash{
+  font-family:"Caveat", cursive;
+  font-weight:600;
+  font-size:20px;
+  color:#1b140f;
+}
+.sections{margin-top:10px; display:flex; flex-direction:column; gap:10px; position:relative; z-index:1;}
+.sec{
+  background:#fff;
+  border:2px solid rgba(31,27,22,.12);
+  border-radius:16px;
+  padding:10px 12px;
+}
+.secTitle{
+  font-family:"Yomogi", cursive;
+  font-size:14px;
+  display:flex; align-items:center; gap:8px;
+}
+.ul{
+  height:3px; width:60px; border-radius:99px;
+  background:linear-gradient(90deg, var(--b), var(--d));
+}
+.secBody{margin-top:6px; font-size:14px; line-height:1.7;}
+
+.qrArea{
+  background:#fff;
+  border:2px solid rgba(31,27,22,.14);
+  border-radius:18px;
+  padding:12px;
+}
+.qrTitle{font-family:"Yomogi", cursive;}
+.qrBox{
+  margin-top:8px;
+  border-radius:16px;
+  border:2px dashed rgba(31,27,22,.20);
+  padding:10px;
+  display:grid; place-items:center;
+  background:#fff;
+}
+.qrRow{display:flex; gap:8px; flex-wrap:wrap; margin-top:10px;}
+
+.scanPanel{
+  background:#fff;
+  border:2px solid rgba(31,27,22,.14);
+  border-radius:18px;
+  padding:12px;
+  margin-top:10px;
+}
+.reader{
+  margin-top:12px;
+  border-radius:16px;
+  overflow:hidden;
+  border:2px dashed rgba(31,27,22,.20);
+  background:#00000008;
+  min-height:240px;
+}
+.scanResult{margin-top:12px; border-top:1px dashed rgba(31,27,22,.18); padding-top:10px;}
+.scanLabel{font-family:"Yomogi", cursive;}
+.scanText{margin-top:6px; font-size:13px; color:var(--muted); word-break:break-all;}
+
+.bookTools{display:flex; gap:8px; flex-wrap:wrap; margin-top:8px;}
+.bookList{display:flex; flex-direction:column; gap:10px; margin-top:12px;}
+.bookItem{
+  background:#fff;
+  border:2px solid rgba(31,27,22,.14);
+  border-radius:18px;
+  padding:12px;
+  display:flex;
+  gap:10px;
+  align-items:flex-start;
+}
+.biIcon{
+  width:48px; height:48px; border-radius:16px;
+  border:2px solid rgba(31,27,22,.14);
+  background-size:cover; background-position:center;
+  flex:0 0 auto;
+}
+.biMain{flex:1}
+.biName{font-family:"Yomogi", cursive; font-size:16px; font-weight:700;}
+.biMeta{font-size:12px; color:var(--muted); margin-top:2px;}
+.biBtns{display:flex; gap:8px; flex-wrap:wrap; margin-top:8px;}
+
+.toast{
+  position:fixed;
+  left:50%; transform:translateX(-50%);
+  bottom:14px;
+  background:#1f1b16;
+  color:#fff;
+  padding:10px 12px;
+  border-radius:999px;
+  font-size:13px;
+  opacity:0;
+  pointer-events:none;
+  transition:opacity .2s ease;
+  z-index:999;
+}
+.toast.show{opacity:1;}
+
+.footer{
+  width:min(980px, 94vw);
+  margin:0 auto 18px;
+  text-align:center;
+  font-size:12px;
+}
+
+@media (max-width: 820px){
+  .row2{grid-template-columns:1fr}
+  .profileWrap{grid-template-columns:1fr}
+}

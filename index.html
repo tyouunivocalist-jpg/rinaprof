@@ -1,0 +1,289 @@
+<!doctype html>
+<html lang="ja">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover" />
+  <meta name="theme-color" content="#F4EEE3" />
+  <title>RINAプロフ帳</title>
+
+  <!-- Google Fonts（あなたが外部CSSで入れたやつ：&amp;じゃなく&の形でOK） -->
+  <link href="https://fonts.googleapis.com/css2?family=Zen+Maru+Gothic:wght@400;700&family=Yomogi&family=Caveat:wght@600&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="./style.css" />
+</head>
+
+<body>
+  <div class="app">
+    <header class="topbar paper">
+      <div class="brand">
+        <div class="logoMark" aria-hidden="true">R</div>
+        <div class="brandText">
+          <div class="brandTitle">RINAプロフ</div>
+          <div class="brandSub">あつまる　つながる　はじまる</div>
+        </div>
+      </div>
+
+      <nav class="navRow" aria-label="メニュー">
+        <button class="navBtn" data-go="home">ホーム</button>
+        <button class="navBtn" data-go="create">プロフィール入力</button>
+        <button class="navBtn" data-go="my">プロフィール確認</button>
+        <button class="navBtn" data-go="scan">QR読取</button>
+        <button class="navBtn" data-go="book">RINAプロフ帳</button>
+      </nav>
+    </header>
+
+    <main class="main">
+      <div id="toast" class="toast" role="status" aria-live="polite"></div>
+
+      <!-- HOME -->
+      <section id="screen-home" class="screen paper">
+        <h2 class="h2">メニュー</h2>
+        <p class="muted">スマホだけで完結。作成→確認→QRで共有→読み取り→プロフ帳に保存。</p>
+
+        <div class="menuGrid">
+          <button class="menuCard c1" data-go="create">
+            <div class="mcTitle">プロフィール入力</div>
+            <div class="mcSub">作成してすぐ完成表示</div>
+          </button>
+          <button class="menuCard c2" data-go="my">
+            <div class="mcTitle">プロフィール確認</div>
+            <div class="mcSub">自分の最新 + QR</div>
+          </button>
+          <button class="menuCard c3" data-go="scan">
+            <div class="mcTitle">QR読取</div>
+            <div class="mcSub">カメラで読み取り</div>
+          </button>
+          <button class="menuCard c4" data-go="book">
+            <div class="mcTitle">RINAプロフ帳</div>
+            <div class="mcSub">保存したプロフィール一覧</div>
+          </button>
+        </div>
+
+        <div class="pinCard">
+          <div class="pinTitle">🗝 編集用PINコード</div>
+          <div class="pinDesc">こちらはプロフィールの編集に使用するコードです</div>
+          <div class="pinRow">
+            <div class="pinValue" id="pinMasked">----</div>
+            <button class="chipBtn" id="btnRevealPin" type="button">表示</button>
+            <button class="chipBtn" id="btnCopyPin" type="button">コピー</button>
+          </div>
+          <div class="pinHint" id="pinHint">この端末ではPINを表示できません（作成時の端末をご利用ください）</div>
+        </div>
+      </section>
+
+      <!-- CREATE -->
+      <section id="screen-create" class="screen paper hidden">
+        <div class="screenHead">
+          <h2 class="h2">プロフィール入力</h2>
+          <p class="muted">短文でOK。作成すると「プロフィール確認」に移動してQRも出るよ。</p>
+        </div>
+
+        <form id="formCreate" class="form">
+          <div class="row2">
+            <label class="field">
+              <div class="label">① ニックネーム</div>
+              <input id="fNickname" type="text" maxlength="24" placeholder="例：りな" required />
+            </label>
+
+            <label class="field">
+              <div class="label">⑧ プロフィール画像（アイコン）</div>
+              <input id="fIcon" type="file" accept="image/*" />
+              <div class="iconPreviewRow">
+                <div class="iconPreview" id="iconPreview" aria-label="アイコンプレビュー"></div>
+                <button class="chipBtn" id="btnRemoveIcon" type="button">画像を外す</button>
+              </div>
+              <div class="hint">※QRには入れません（アイコンだけ）</div>
+            </label>
+          </div>
+
+          <div class="row2">
+            <label class="field">
+              <div class="label">② 血液型</div>
+              <select id="fBlood" required>
+                <option value="ひみつ">ひみつ</option>
+                <option value="A">A</option>
+                <option value="B">B</option>
+                <option value="O">O</option>
+                <option value="AB">AB</option>
+              </select>
+            </label>
+
+            <label class="field">
+              <div class="label">③ 星座</div>
+              <select id="fZodiac" required>
+                <option value="ひみつ">ひみつ</option>
+                <option value="おひつじ座">おひつじ座</option>
+                <option value="おうし座">おうし座</option>
+                <option value="ふたご座">ふたご座</option>
+                <option value="かに座">かに座</option>
+                <option value="しし座">しし座</option>
+                <option value="おとめ座">おとめ座</option>
+                <option value="てんびん座">てんびん座</option>
+                <option value="さそり座">さそり座</option>
+                <option value="いて座">いて座</option>
+                <option value="やぎ座">やぎ座</option>
+                <option value="みずがめ座">みずがめ座</option>
+                <option value="うお座">うお座</option>
+              </select>
+            </label>
+          </div>
+
+          <label class="field">
+            <div class="label">④ ハマってること（短文）</div>
+            <input id="fHobby" type="text" maxlength="60" placeholder="例：星見・カフェ巡り" />
+          </label>
+
+          <label class="field">
+            <div class="label">⑤ （入力内容）推し!!（短文）</div>
+            <input id="fOshi" type="text" maxlength="30" placeholder="例：猫" autocomplete="off" />
+            <div class="hint">表示は「<span class="accentHash">（入力内容）</span>推し!!」になります</div>
+          </label>
+
+          <label class="field">
+            <div class="label">⑥ いつもの自分（RINAをどう利用してる？）（短文）</div>
+            <input id="fUsual" type="text" maxlength="80" placeholder="例：イベントの企画と作業でよく使う" />
+          </label>
+
+          <label class="field">
+            <div class="label">⑦ 将来やってみたいこと（短文）</div>
+            <input id="fFuture" type="text" maxlength="80" placeholder="例：みんなで星空観測会を定期開催" />
+          </label>
+
+          <label class="field">
+            <div class="label">⑨ 編集用PINコード（4桁数字）</div>
+            <input id="fPin" type="password" inputmode="numeric" pattern="[0-9]{4}" maxlength="4" placeholder="例：1234" />
+            <div class="hint">こちらはプロフィールの編集に使用するコードです</div>
+          </label>
+
+          <div class="actions">
+            <button id="btnCreate" class="primary" type="submit">作成</button>
+            <button class="ghost" type="button" data-go="home">戻る</button>
+          </div>
+
+          <div class="muted small">※作成するとURLが生成され、そのURLをQRにして共有できます</div>
+        </form>
+      </section>
+
+      <!-- MY PROFILE -->
+      <section id="screen-my" class="screen paper hidden">
+        <div class="screenHead">
+          <h2 class="h2">プロフィール確認</h2>
+          <p class="muted">自分の最新プロフィール（この端末で作成した最新）を表示します。</p>
+        </div>
+
+        <div class="profileWrap">
+          <div id="profileCard" class="profileCard">
+            <!-- JSで描画 -->
+          </div>
+
+          <div class="qrArea">
+            <div class="qrTitle">QRコード</div>
+            <div class="qrBox">
+              <div id="qrMount"></div>
+            </div>
+            <div class="qrRow">
+              <button id="btnCopyLink" class="chipBtn" type="button">リンクコピー</button>
+              <button id="btnSaveImage" class="chipBtn" type="button">画像保存</button>
+            </div>
+            <div class="hint" id="myUrlHint"></div>
+          </div>
+        </div>
+
+        <div class="actions">
+          <button class="ghost" type="button" data-go="home">ホーム</button>
+          <button class="ghost" type="button" data-go="scan">QR読取へ</button>
+          <button class="ghost" type="button" data-go="book">RINAプロフ帳へ</button>
+        </div>
+      </section>
+
+      <!-- SCAN -->
+      <section id="screen-scan" class="screen paper hidden">
+        <div class="screenHead">
+          <h2 class="h2">QR読取</h2>
+          <p class="muted">カメラで他者のプロフィールQRを読み取って、RINAプロフ帳に保存します。</p>
+        </div>
+
+        <div class="scanPanel">
+          <button id="btnStartScan" class="primary" type="button">カメラ起動</button>
+          <button id="btnStopScan" class="ghost" type="button">停止</button>
+          <div class="hint">※初回はカメラ許可が必要です</div>
+
+          <div id="reader" class="reader"></div>
+
+          <div class="scanResult">
+            <div class="scanLabel">読取結果</div>
+            <div id="scanText" class="scanText">まだ読み取っていません</div>
+          </div>
+        </div>
+
+        <div class="actions">
+          <button class="ghost" type="button" data-go="home">ホーム</button>
+          <button class="ghost" type="button" data-go="book">RINAプロフ帳へ</button>
+        </div>
+      </section>
+
+      <!-- BOOK -->
+      <section id="screen-book" class="screen paper hidden">
+        <div class="screenHead">
+          <h2 class="h2">RINAプロフ帳</h2>
+          <p class="muted">読み取って保存したプロフィールを一覧表示します。</p>
+        </div>
+
+        <div class="bookTools">
+          <button id="btnReloadBook" class="chipBtn" type="button">更新</button>
+          <button id="btnClearLocal" class="chipBtn" type="button">端末の控えを消す</button>
+        </div>
+
+        <div id="bookList" class="bookList">
+          <!-- JSで描画 -->
+        </div>
+
+        <div class="actions">
+          <button class="ghost" type="button" data-go="home">ホーム</button>
+          <button class="ghost" type="button" data-go="scan">QR読取へ</button>
+        </div>
+      </section>
+
+      <!-- SHARE VIEW (URLで?p=... された時の表示) -->
+      <section id="screen-view" class="screen paper hidden">
+        <div class="screenHead">
+          <h2 class="h2">プロフィール</h2>
+          <p class="muted">共有リンクから開いた表示です。</p>
+        </div>
+
+        <div class="profileWrap">
+          <div id="viewCard" class="profileCard"></div>
+          <div class="qrArea">
+            <div class="qrTitle">QRコード</div>
+            <div class="qrBox"><div id="qrMountView"></div></div>
+            <div class="qrRow">
+              <button id="btnSaveImageView" class="chipBtn" type="button">画像保存</button>
+            </div>
+            <div class="hint" id="viewUrlHint"></div>
+          </div>
+        </div>
+
+        <div class="actions">
+          <button class="ghost" type="button" data-go="home">ホーム</button>
+          <button class="ghost" type="button" data-go="scan">QR読取へ</button>
+        </div>
+      </section>
+
+      <!-- Hidden canvas area for exporting -->
+      <canvas id="exportCanvas" class="hidden" width="1080" height="1350"></canvas>
+    </main>
+
+    <footer class="footer muted">
+      <span>© RINAプロフ帳</span>
+    </footer>
+  </div>
+
+  <!-- External JS（あなたが置いたやつ） -->
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
+  <script src="https://unpkg.com/html5-qrcode@2.3.10/html5-qrcode.min.js"></script>
+
+  <!-- App JS -->
+  <script src="./script.js"></script>
+</body>
+</html>
